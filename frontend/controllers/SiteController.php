@@ -75,7 +75,13 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
-    /**
+    public function actionSay()
+    {
+        return $this->render('my\say', ['world' => $_GET['world']]);
+    }
+
+
+/**
      * Logs in a user.
      *
      * @return mixed

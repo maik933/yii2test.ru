@@ -36,6 +36,20 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
+        [
+           'label' => 'Users',
+           'items' => [
+                ['label' => 'List', 'url' => ['/users/list']],
+                ['label' => 'Add User', 'url' => ['/users/add_user']],
+            ],
+        ],
+        [
+            'label' => 'Posts',
+            'items' => [
+                ['label' => 'List', 'url' => ['/users/list']],
+                ['label' => 'Add Post', 'url' => ['/users/add_post']],
+            ],
+        ],
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
     ];

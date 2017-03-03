@@ -7,6 +7,7 @@ use yii\web\Controller;
 use common\models\User;
 use yii\data\ActiveDataProvider;
 use backend\models\{ AddForm , UpdateForm};
+use frontend\models\post\Post;
 
 class UsersController extends Controller
 {
@@ -58,8 +59,26 @@ class UsersController extends Controller
 
     public function actionDelete($id)
     {
+        Post::deleteAll(['user_id' => $id]);
         User::findOne($id)->delete();
         $this->goBack();
     }
+
+    public function actionView($id)
+    {
+        $posts = Post::find()->where(['user_id' => $id]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $posts,
+            'pagination' => [
+                'pageSize' => 3,
+            ]
+        ]);
+
+        return $this->render('view',[
+            'dataProvider' => $dataProvider
+        ]);
+    }
+    
 }
 ?>

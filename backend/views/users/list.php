@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\grid\GridView;
+use common\models\User;
 ?>
 
 <h2>Список пользователей</h2>
@@ -14,6 +15,12 @@ use yii\grid\GridView;
             'id',
             'username',
             'email',
+            [
+                'attribute'=>'role',
+                'value' => function($data) {
+                    return User::ROLE_NAME[$data->role];
+                },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

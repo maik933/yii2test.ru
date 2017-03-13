@@ -6,10 +6,12 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use common\models\User;
 
 $this->title = 'Обновить пользователя';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="site-signup">
     <h1><?= Html::encode($this->title) ?></h1>
     <div class="row">
@@ -21,6 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'email')->textInput(['value' => $user->email]) ?>
 
             <?= $form->field($model, 'password')->passwordInput(['value' => '']) ?>
+
+            <?= $form->field($model, 'role')->dropDownList(User::ROLE_NAME, [
+                'options' =>[ $user->role => ['Selected' => true]]])?>
 
             <div class="form-group">
                 <?= Html::submitButton('Update', ['class' => 'btn btn-primary', 'name' => 'add-button']) ?>

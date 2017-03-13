@@ -6,6 +6,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use common\models\User;
 
 $this->title = 'Добавление нового пользователя';
 $this->params['breadcrumbs'][] = $this->title;
@@ -21,6 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'email') ?>
 
             <?= $form->field($model, 'password')->passwordInput() ?>
+
+            <?= $form->field($model, 'role')->dropDownList(User::ROLE_NAME)?>
 
             <div class="form-group">
                 <?= Html::submitButton('Add', ['class' => 'btn btn-primary', 'name' => 'add-button']) ?>

@@ -12,6 +12,7 @@ class UpdateForm extends Model
     public $username;
     public $email;
     public $password;
+    public $role;
     private static $id;
     
     public function __construct(int $id)
@@ -31,7 +32,9 @@ class UpdateForm extends Model
             ['email', 'required', 'message' => 'Введите email'],
             ['email', 'email', 'message' => 'Введите правильно email'],
             ['email', 'unique', 'targetClass' => User::className(), 'message' => 'Данный email уже зарегистрирован', 'filter' => ['!=' , 'id', UpdateForm::$id]],
-            ['email', 'string', 'max' => 255]
+            ['email', 'string', 'max' => 255],
+
+            ['role', 'integer']
         ];
     }
 
@@ -42,6 +45,7 @@ class UpdateForm extends Model
     {
         $user->username = $this->username;
         $user->email = $this->email;
+        $user->role = $this->role;
 
         if ($this->password != '') {
             $user->setPassword($this->password);

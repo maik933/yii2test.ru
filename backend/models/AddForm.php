@@ -12,7 +12,7 @@ class AddForm extends Model
     public $username;
     public $email;
     public $password;
-
+    public $role;
 
     /**
      * @inheritdoc
@@ -33,6 +33,8 @@ class AddForm extends Model
 
             ['password', 'required', 'message' => 'Введите пароль'],
             ['password', 'string', 'min' => 6],
+
+            ['role', 'integer']
         ];
     }
 
@@ -48,6 +50,7 @@ class AddForm extends Model
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
+        $user->role = $this->role;
         $user->setPassword($this->password);
         $user->generateAuthKey();
 

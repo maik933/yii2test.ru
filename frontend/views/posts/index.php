@@ -36,6 +36,6 @@ use yii\grid\GridView;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-    <?= Html::a('Добавить пост','posts/add',['class' => 'btn btn-primary']) ?>
+    <?= Html::a('Добавить пост','add',['class' => 'btn btn-primary']) ?>
 </div>
 

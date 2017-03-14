@@ -31,8 +31,12 @@ class UpdateForm extends Model
             return null;
         }
 
-        $post->title = $this->title;
-        $post->body = $this->body;
+        $args = [
+            'title' => $this->title,
+            'body' => $this->body
+        ];
+
+        $post->setArgs($args);
 
         return $post->save() ? $post : null;
     }

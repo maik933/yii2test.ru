@@ -47,10 +47,14 @@ class AddForm extends Model
             return null;
         }
 
+        $args = [
+            'username' => $this->username,
+            'email'   => $this->email,
+            'role'    => $this->role
+        ];
+
         $user = new User();
-        $user->username = $this->username;
-        $user->email = $this->email;
-        $user->role = $this->role;
+        $user->setArgs($args);
         $user->setPassword($this->password);
         $user->generateAuthKey();
 

@@ -8,9 +8,37 @@ use common\models\User;
 use yii\data\ActiveDataProvider;
 use backend\models\{ AddForm , UpdateForm};
 use frontend\models\post\Post;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 
 class UsersController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['list', 'add', 'update', 'delete', 'view'],
+                'rules' => [
+                    [
+                        'actions' => ['list', 'add', 'update', 'delete', 'view'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function () {
+                            return User::isAdmin();
+                        }
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
+    }
+    
     public function actionList()
     {
         $users = User::find();

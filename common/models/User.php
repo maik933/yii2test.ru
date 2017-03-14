@@ -42,6 +42,16 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return '{{%user}}';
     }
+    
+    public static function isAdmin()
+    {
+        if (!Yii::$app->user->isGuest) {
+            $user = User::findOne(Yii::$app->user->identity->id);
+            return (User::ROLE_NAME[$user->role] == 'admin') ?  true : false;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * @inheritdoc

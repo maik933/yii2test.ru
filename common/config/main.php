@@ -5,8 +5,6 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-    ],
-    'components' => [
         'authManager' => [
             'class' => 'yii\rbac\PhpManager',
             'defaultRoles' => ['user','moder','admin'], //здесь прописываем роли
@@ -15,5 +13,5 @@ return [
             'assignmentFile' => '@common/components/rbac/assignments.php',
             'ruleFile' => '@common/components/rbac/rules.php'
         ]
-    ]
+    ],
 ];

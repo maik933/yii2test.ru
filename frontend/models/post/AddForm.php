@@ -25,16 +25,20 @@ class AddForm extends Model
         ];
     }
     
-    public function save()
+    public function save($id)
     {
         if (!$this->validate()) {
             return null;
         }
 
+        $args = [
+            'title' => $this->title,
+            'body' => $this->body,
+            'user_id' => $id
+        ];
+
         $post = new Post();
-        $post->title = $this->title;
-        $post->body = $this->body;
-        $post->user_id = $id;
+        $post->setArgs($args);
         
         return $post->save() ? $post : null;
     }

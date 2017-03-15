@@ -38,7 +38,7 @@ AppAsset::register($this);
     if (User::isAdmin()) {
         $menuItems = [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Users', 'url' => ['/users/list']],
+            ['label' => \Yii::t('app','Users'), 'url' => ['/users/list']],
         ];
     }
     if (Yii::$app->user->isGuest) {
